@@ -8,4 +8,6 @@ pub enum Opcode {
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum DispatchEvent {
     ServerStatusUpdate,
+    PlayerJoined,
+    PlayerLeft,
 }

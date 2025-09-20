@@ -27,13 +27,12 @@ export default async function RootLayout({
 }>) {
   const websocketUrl = await fetch("http://127.0.0.1:1140/api/gateway")
     .then(async (response) => await response.json())
-    .then((data) => data.url)
-    .catch((err) => console.error(`failed to get gateway URL: ${err}`));
+    .then((data) => data.url);
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white`}
       >
         <WebSocketProvider url={websocketUrl}>
           {children}

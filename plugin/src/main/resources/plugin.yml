@@ -1,0 +1,7 @@
+name: Celestia
+version: 0.1.0
+main: io.github.nicdgonzalez.celestia.CelestiaPlugin
+description: A helper plugin for the Minecraft Dashboard.
+author: Nicolas Gonzalez
+website: https://github.com/nicdgonzalez/celestia
+api-version: '1.21.8'

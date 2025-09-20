@@ -1,6 +1,7 @@
 //! This module is responsible for defining and implementing all of the routes.
 
 mod api;
+mod callback;
 
 use std::sync::Arc;
 
@@ -15,6 +16,7 @@ use crate::state::AppState;
 pub fn router() -> Router<Arc<AppState>> {
     Router::new()
         .nest("/api", api::router())
+        .nest("/callback", callback::router())
         .route("/", routing::get(get))
 }
 
@@ -54,7 +56,7 @@ async fn websocket_handler(stream: WebSocket, state: Arc<AppState>) {
                     tracing::error!("client websocket returned an error: {err}");
                     break;
                 }
-                _ => continue,
+                _ => {}
             }
         }
     });

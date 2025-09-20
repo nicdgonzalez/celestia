@@ -28,7 +28,7 @@ use tracing_subscriber::prelude::*;
 
 use state::AppState;
 
-/// Represents the status of the program after it has been terminated.
+/// Represents the status of the program after it has terminated.
 enum ExitCode {
     /// Indicates the program terminated without any errors.
     Success = 0,
@@ -95,5 +95,6 @@ async fn start_server() -> Result<(), anyhow::Error> {
             .context("failed to get local address")?
     );
 
-    Ok(axum::serve(listener, app).await.unwrap())
+    axum::serve(listener, app).await.unwrap();
+    Ok(())
 }
