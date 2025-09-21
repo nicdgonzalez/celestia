@@ -28,6 +28,14 @@ public class CelestiaPlugin extends JavaPlugin implements Listener {
     Bukkit.getPluginManager().registerEvents(this, this);
   }
 
+  /**
+   * Notify webhooks when the server is no longer accepting connections.
+   *
+   * In reality, the server <i>may</i> still allow connections after this fires
+   * if someone forcefully disabled this plugin specifically, but generally,
+   * the server disables all plugins when it begins shutting down the server,
+   * which is when you can expect this function to be called.
+   */
   @Override
   public void onDisable() {
     ServerStatusUpdate value = new ServerStatusUpdate(false);
@@ -45,6 +53,9 @@ public class CelestiaPlugin extends JavaPlugin implements Listener {
     this.sendToBackend("status", body);
   }
 
+  /**
+   * Notify webhooks when the server is ready for players to join.
+   */
   @EventHandler
   public void onServerLoad(ServerLoadEvent event) {
     ServerStatusUpdate value = new ServerStatusUpdate(true);
@@ -62,6 +73,9 @@ public class CelestiaPlugin extends JavaPlugin implements Listener {
     this.sendToBackend("status", body);
   }
 
+  /**
+   * Notify webhooks when a player connects to the Minecraft world.
+   */
   @EventHandler
   public void onPlayerJoin(PlayerJoinEvent event) {
     Player player = event.getPlayer();
@@ -83,6 +97,9 @@ public class CelestiaPlugin extends JavaPlugin implements Listener {
     this.sendToBackend("player_joined", body);
   }
 
+  /**
+   * Notify webhooks when a player disconnects from the Minecraft world.
+   */
   @EventHandler
   public void onPlayerDisconnect(PlayerConnectionCloseEvent event) {
     UUID uuid = event.getPlayerUniqueId();

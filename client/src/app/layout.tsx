@@ -4,6 +4,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { WebSocketProvider } from "@/components/WebSocketProvider";
 
 import "./globals.css";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Navigation } from "@/components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +32,22 @@ export default async function RootLayout({
     .then(async (response) => await response.json())
     .then((data) => data.url);
 
+  const isOnline = await fetch("http://127.0.0.1:1140/api/server/status")
+    .then(async (response) => await response.json())
+    .then((data) => data.is_online);
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 dark:bg-slate-900 text-black dark:text-white`}
       >
-        <WebSocketProvider url={websocketUrl}>
-          {children}
+        <WebSocketProvider url={websocketUrl} isOnline={isOnline}>
+          <Header />
+          <div className="flex flex-row">
+            <Navigation />
+            {children}
+          </div>
+          <Footer />
         </WebSocketProvider>
       </body>
     </html>

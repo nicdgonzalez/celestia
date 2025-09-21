@@ -14,6 +14,7 @@
 mod opcode;
 mod routes;
 mod state;
+mod varint;
 
 use std::io::Write as _;
 use std::sync::Arc;

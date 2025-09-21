@@ -27,10 +27,13 @@ const WebSocketContext = createContext<WebSocketData>({
 
 interface WebSocketProviderProps extends PropsWithChildren {
   url: string;
+  isOnline: boolean;
 }
 
-export function WebSocketProvider({ children, url }: WebSocketProviderProps) {
-  const [isOnline, setIsOnline] = useState<boolean>(false);
+export function WebSocketProvider(
+  { children, url, isOnline: isAlreadyOnline }: WebSocketProviderProps,
+) {
+  const [isOnline, setIsOnline] = useState(isAlreadyOnline);
   const [currentPlayers, setCurrentPlayers] = useState<Player[]>([]);
 
   useEffect(() => {

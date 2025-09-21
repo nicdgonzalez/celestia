@@ -1,5 +1,5 @@
 mod gateway;
-mod status;
+mod server;
 
 use std::sync::Arc;
 
@@ -10,6 +10,6 @@ use crate::state::AppState;
 
 pub fn router() -> Router<Arc<AppState>> {
     Router::new()
-        .route("/status", routing::post(status::post))
+        .nest("/server", server::router())
         .route("/gateway", routing::get(gateway::get))
 }
