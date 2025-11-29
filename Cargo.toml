@@ -1,0 +1,12 @@
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+repository = "https://github.com/nicdgonzalez/celestia"
+
+[workspace.dependencies]
+celestia_core = { path = "./crates/core" }
+celestia_db = { path = "./crates/db" }
+celestia_dashboard = { path = "./crates/dashboard" }

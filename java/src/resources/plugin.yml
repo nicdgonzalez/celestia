@@ -1,0 +1,7 @@
+name: Celestia
+version: 0.1.0
+main: io.github.nicdgonzalez.celestia.CelestiaPlugin
+description: Forward events to the Celestia dashboard.
+author: Nicolas Gonzalez
+website: https://github.com/nicdgonzalez/celestia
+api-version: "1.21.10"
