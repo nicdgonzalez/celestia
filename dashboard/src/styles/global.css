@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@import "tailwindcss-animated";
+@import "tw-animate-css";
+
+.inter {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: var(--font-weight-normal);
+    font-style: normal;
+}
+
+.noto-sans-jp {
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: var(--font-weight-normal);
+    font-style: normal;
+}

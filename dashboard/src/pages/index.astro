@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const title = "Home";
+---
+
+<Layout title={title}>
+  <Header />
+  <main>
+    <section
+      class="flex min-h-screen flex-col items-center justify-center text-center text-white"
+    >
+      <div class="absolute inset-0 -z-50">
+        <img src="/background.jpg" class="h-full w-full object-cover" />
+        <div
+          class="absolute inset-0 bg-linear-to-b from-zinc-900/90 via-zinc-900/80 to-zinc-900/95"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-linear-to-r from-emerald-500/10 to-blue-500/10"
+        >
+        </div>
+      </div>
+      <div class="z-1 container flex max-w-2xl flex-col items-center">
+        <header class="mb-12 flex flex-col gap-y-2">
+          <h1 class="text-4xl font-semibold">
+            All <span class="text-green-500">Your Minecraft Servers</span>, at a
+            Glance
+          </h1>
+          <p class="noto-sans-jp text-xl font-medium text-zinc-300">
+            See how your worlds are evolving
+            <span class="font-medium underline decoration-green-500"
+              >in real time</span
+            >.
+          </p>
+        </header>
+        <p class="mb-12 text-zinc-300">
+          Track activity, monitor performance, and understand your server like
+          never before.
+          <br />
+          Keep an eye on everything happening in your Minecraft universe.
+        </p>
+        <ul class="flex flex-row gap-x-4">
+          <li>
+            <a
+              href="/servers"
+              class="rounded-lg bg-green-500 px-4 py-2 text-black hover:cursor-pointer hover:bg-green-600"
+            >
+              Create a Server
+            </a>
+          </li>
+          <li>
+            <a
+              href="/docs"
+              class="rounded-lg px-4 py-2 text-white hover:cursor-pointer hover:bg-zinc-500/50"
+              >View Documentation</a
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

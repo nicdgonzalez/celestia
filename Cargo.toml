@@ -9,4 +9,3 @@ repository = "https://github.com/nicdgonzalez/celestia"
 [workspace.dependencies]
 celestia_core = { path = "./crates/core" }
 celestia_db = { path = "./crates/db" }
-celestia_dashboard = { path = "./crates/dashboard" }
