@@ -5,3 +5,6 @@ edition.workspace = true
 repository.workspace = true
 
 [dependencies]
+celestia_core.workspace = true
+snowflaked = "1.0.3"
+sqlx = { version = "0.8.6", features = ["sqlite"] }

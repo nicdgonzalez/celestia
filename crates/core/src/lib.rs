@@ -8,3 +8,5 @@
     clippy::style,
     clippy::pedantic
 )]
+
+pub mod server;
