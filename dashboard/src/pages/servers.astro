@@ -1,0 +1,105 @@
+---
+import { Plus } from "lucide-react";
+
+import Header from "@/components/Header.astro";
+import Layout from "@/layouts/Layout.astro";
+import ServerCard from "@/components/ServerCard.astro";
+
+export interface Server {
+  name: string;
+  version: string;
+  playersCurrent: number;
+  playersMaximum: number;
+  cpuCurrent: number;
+  cpuMaximum: number;
+  memoryCurrent: number;
+  memoryMaximum: number;
+  uptime: number;
+}
+
+const title = "Servers";
+
+// TODO: Query from backend API.
+const servers: Array<Server> = [
+  {
+    name: "Survival Multiplayer",
+    version: "1.21.11",
+    playersCurrent: 3,
+    playersMaximum: 20,
+    cpuCurrent: 30,
+    cpuMaximum: 100,
+    memoryCurrent: 6200,
+    memoryMaximum: 8000,
+    uptime: 0,
+  },
+  {
+    name: "Creative World",
+    version: "1.21.4",
+    playersCurrent: 1,
+    playersMaximum: 20,
+    cpuCurrent: 20,
+    cpuMaximum: 100,
+    memoryCurrent: 2400,
+    memoryMaximum: 8000,
+    uptime: 0,
+  },
+  {
+    name: "Celestia",
+    version: "1.21.11",
+    playersCurrent: 6,
+    playersMaximum: 20,
+    cpuCurrent: 70,
+    cpuMaximum: 100,
+    memoryCurrent: 6900,
+    memoryMaximum: 8000,
+    uptime: 0,
+  },
+  {
+    name: "Offline Server",
+    version: "1.21.1",
+    playersCurrent: 0,
+    playersMaximum: 20,
+    cpuCurrent: 0,
+    cpuMaximum: 100,
+    memoryCurrent: 0,
+    memoryMaximum: 8000,
+    uptime: 0,
+  },
+];
+---
+
+<Layout title={title}>
+  <Header />
+  <section
+    class="flex min-h-screen flex-col items-center px-8 py-4 pt-24 text-white"
+  >
+    <div class="container">
+      <header class="pb-8">
+        <h1 class="text-4xl font-semibold">Servers</h1>
+        <p class="text-xl text-zinc-700 dark:text-zinc-300">
+          Select a server to manage.
+        </p>
+      </header>
+      <ul class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {servers.map((server) => <ServerCard data={server} />)}
+        <!-- Button to create a new server -->
+        <li>
+          <a
+            href="/servers/new"
+            class="flex min-h-64 w-full flex-col items-center justify-center gap-y-4 rounded-lg border border-dashed border-zinc-700 bg-zinc-800 px-8 py-4 text-center hover:border-green-500"
+          >
+            <span class="justify-center rounded-lg bg-zinc-700 p-4">
+              <Plus />
+            </span>
+            <header>
+              <h3 class="text-xl font-semibold">Add Server</h3>
+              <p class="text-zinc-700 dark:text-zinc-300">
+                Create a new Minecraft server
+              </p>
+            </header>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Layout>

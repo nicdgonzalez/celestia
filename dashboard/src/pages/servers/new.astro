@@ -1,0 +1,29 @@
+---
+import { ArrowLeft } from "lucide-react";
+
+import Layout from "@/layouts/Layout.astro";
+
+const title = "Create Server";
+---
+
+<Layout title={title}>
+  <section
+    class="flex min-h-screen flex-col items-center px-8 py-4 pt-8 text-white"
+  >
+    <div class="container">
+      <a
+        href="/servers"
+        class="flex max-w-fit flex-row items-center justify-center gap-x-2 rounded-lg border border-zinc-700 px-4 py-2 text-sm hover:bg-zinc-700 dark:bg-zinc-800"
+      >
+        <ArrowLeft size={16} />
+        Back to Servers
+      </a>
+      <header class="pt-8">
+        <h1 class="text-4xl font-semibold">Create Server</h1>
+        <p class="text-xl text-zinc-700 dark:text-zinc-300">
+          Configure your new Minecraft server.
+        </p>
+      </header>
+    </div>
+  </section>
+</Layout>

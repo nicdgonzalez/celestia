@@ -1,0 +1,25 @@
+---
+import type { Server } from "@/pages/servers.astro";
+import ProgressBars from "./ProgressBars.astro";
+
+interface Props {
+  data: Server;
+}
+
+const { data } = Astro.props;
+---
+
+<li class="">
+  <button
+    type="button"
+    class="flex min-h-64 w-full flex-col justify-center rounded-lg border border-zinc-700 bg-zinc-800 px-8 py-4 hover:border-green-500"
+  >
+    <header class="pb-4 text-left">
+      <h2 class="text-xl font-semibold">{data.name}</h2>
+      <p class="text-zinc-700 dark:text-zinc-300">
+        {data.version}
+      </p>
+    </header>
+    <ProgressBars data={data} />
+  </button>
+</li>

@@ -1,0 +1,61 @@
+---
+import type { Server } from "@/pages/servers.astro";
+
+interface Props {
+  data: Server;
+}
+
+const { data } = Astro.props;
+
+interface ProgressBar {
+  title: string;
+  text: string;
+  current: number;
+  maximum: number;
+}
+
+const progressBars: Array<ProgressBar> = [
+  {
+    title: "Players",
+    text: `${data.playersCurrent}/${data.playersMaximum}`,
+    current: data.playersCurrent,
+    maximum: data.playersMaximum,
+  },
+  {
+    title: "CPU",
+    text: `${(data.cpuCurrent / data.cpuMaximum) * 100}%`,
+    current: data.cpuCurrent,
+    maximum: data.cpuMaximum,
+  },
+  {
+    title: "Memory",
+    text: `${(data.memoryCurrent / 1000).toFixed(1)}/${(data.memoryMaximum / 1000).toFixed(1)} GB`,
+    current: data.memoryCurrent,
+    maximum: data.memoryMaximum,
+  },
+];
+---
+
+<ul class="flex flex-col gap-y-4 pb-4">
+  <!--
+  TODO: Players: Orange -> CPU: Green -> Memory: Blue
+  Probably need to use twMerge and clsx to achieve what I'm looking for.
+  -->
+  {
+    progressBars.map((bar) => (
+      <li class="flex w-full flex-col">
+        <header class="flex flex-row justify-between">
+          <h3>{bar.title}</h3>
+          <p>{bar.text}</p>
+        </header>
+        <progress
+          class="max-h-2 rounded-full dark:bg-zinc-700 [&::-moz-progress-bar]:bg-green-500"
+          value={bar.current}
+          max={bar.maximum}
+        >
+          70%
+        </progress>
+      </li>
+    ))
+  }
+</ul>
