@@ -1,0 +1,9 @@
+# Python
+*/__pycache__/*
+!__init__.py
+!__main__.py
+*.egg-info/*
+
+# Fuji
+fuji*.pid
+fuji-init

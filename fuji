@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ ! -e "/usr/bin/python" ]]; then
+    echo "Python is not installed. Please install Python 3.9 or higher."
+    exit 1
+fi
+
+SOURCE=${BASH_SOURCE[0]}
+
+while [ -L "$SOURCE" ]; do
+    CURRENT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$CURRENT_DIR/$SOURCE"
+done
+
+FUJI_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+cd "$FUJI_DIR"
+python -m libfuji $@

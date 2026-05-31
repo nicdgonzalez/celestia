@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fuji"
+description = "A command line tool for managing Paper Minecraft servers"
+requires-python = ">=3.9"
+keywords = []
+dependencies = [
+    "requests>=2.25.1",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.9.1",
+    "isort>=5.12.0",
+    "mypy>=1.5.1",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "libfuji.__version__"}
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79

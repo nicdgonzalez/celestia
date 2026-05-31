@@ -1,0 +1,3 @@
+# These are the dependencies for the `dev` extra
+black>=23.9.1
+isort>=5.12.0
