@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "papercut"
+description = "A short description of the project."
+keywords = []
+requires-python = ">=3.11"
+license = {file = "LICENSE", format = "text"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "papercut.__version__"}
+
+[tool.black]
+line-length = 80
+
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+combine_star = true
+line_length = 80
