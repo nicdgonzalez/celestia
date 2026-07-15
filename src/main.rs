@@ -10,11 +10,6 @@
     clippy::pedantic
 )]
 
-use std::io;
-use std::io::Write as _;
-
-use crate::error::Reporter;
-
 mod app;
 mod commands;
 mod context;
@@ -28,6 +23,11 @@ mod plugins;
 mod tmux;
 mod varint;
 mod watcher;
+
+use std::io;
+use std::io::Write as _;
+
+use crate::error::Reporter;
 
 /// Describes the result of the program after it has terminated.
 #[repr(u8)]

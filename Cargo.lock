@@ -191,16 +191,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "celestia-cli"
+name = "celestia-core"
 version = "0.1.0"
-
-[[package]]
-name = "celestia-paper"
-version = "0.1.0"
-
-[[package]]
-name = "celestia-tmux"
-version = "0.1.0"
+dependencies = [
+ "clap",
+ "serde",
+]
 
 [[package]]
 name = "cfg-if"
