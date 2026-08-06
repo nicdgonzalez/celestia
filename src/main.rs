@@ -7,6 +7,11 @@
     clippy::pedantic
 )]
 
-fn main() {
-    println!("Hello, world!");
+use crate::error::ExitCode;
+
+mod error;
+mod runner;
+
+fn main() -> ExitCode {
+    runner::run()
 }
