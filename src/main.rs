@@ -9,6 +9,7 @@
 
 use crate::error::ExitCode;
 
+mod commands;
 mod error;
 mod runner;
 
