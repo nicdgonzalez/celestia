@@ -51,9 +51,8 @@ pub struct ListVersionsRequest<'a> {
 /// [`List Versions`]: https://docs.modrinth.com/api/operations/getprojectversions/
 #[derive(Debug, Clone)]
 pub struct Version {
-    #[expect(dead_code)]
-    pub kind: VersionKind,
-    pub file: Option<File>,
+    pub id: String,
+    pub file: Option<DownloadableFile>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Deserialize)]
@@ -66,7 +65,7 @@ pub enum VersionKind {
 }
 
 #[derive(Debug, Clone)]
-pub struct File {
+pub struct DownloadableFile {
     pub file_name: PathBuf,
     pub url: String,
 }
@@ -142,12 +141,13 @@ impl ModrinthClient {
     ) -> Result<impl Iterator<Item = Version>, reqwest::Error> {
         #[derive(serde::Deserialize)]
         struct VersionResponse {
+            version_number: String,
             version_type: VersionKind,
-            files: Vec<_File>,
+            files: Vec<File>,
         }
 
         #[derive(Debug, Clone, serde::Deserialize)]
-        struct _File {
+        struct File {
             filename: PathBuf,
             url: String,
             primary: bool,
@@ -177,13 +177,13 @@ impl ModrinthClient {
                     .find(|file| file.primary)
                     .or_else(|| v.files.first())
                     .cloned()
-                    .map(|f| File {
+                    .map(|f| DownloadableFile {
                         file_name: f.filename,
                         url: f.url,
                     });
 
                 Version {
-                    kind: v.version_type,
+                    id: v.version_number,
                     file,
                 }
             });
@@ -191,7 +191,7 @@ impl ModrinthClient {
         Ok(versions)
     }
 
-    pub async fn download(&self, file: &File) -> Result<Bytes, reqwest::Error> {
+    pub async fn download(&self, file: &DownloadableFile) -> Result<Bytes, reqwest::Error> {
         self.http.get(&file.url).send().await?.bytes().await
     }
 }
