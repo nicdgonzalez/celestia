@@ -11,6 +11,7 @@ use crate::error::ExitCode;
 
 mod commands;
 mod error;
+mod modrinth;
 mod runner;
 
 fn main() -> ExitCode {
